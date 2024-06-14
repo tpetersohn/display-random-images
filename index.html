@@ -10,26 +10,22 @@
     <div id="images"></div>
     <script type="text/javascript">
 
-        function fetchImages() {
-        
+        async function fetchImages() {
+            const response = await fetch('http://localhost:3000/'); // Fetch from server
+            const imageUrls = await response.json(); // Parse as JSON
+
             const   imageContainer = document.getElementById('images')    
                     imageContainer.innerHTML = '' 
-            
-            fetch('http://localhost:3000').then(
                 
-                    (data) => {data.forEach(element => {
+                    imageUrls.forEach(imageUrl => {
                            
                                 const   imageElement=document.createElement('img')
-                                        imageElement.src=element
+                                        imageElement.src=imageUrl
                                         imageElement.alt="Random Image"
                                         imageContainer.appendChild(imageElement)
                     
                             });
                             } 
-                    
-                    ).catch((err)=>console.log(err))
-
-            }
 
         fetchImages();
    
