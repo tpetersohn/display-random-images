@@ -1,16 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Images</title>
+
 </head>
+
 <body>
+
     <h1>Random Images</h1>
     <div id="images"></div>
+
     <script type="text/javascript">
 
-        async function fetchImages() {
+        function fetchImages() {
+        
+            fetch('http://localhost:3000/').then(data => data.json())
+                                           .then(urls => { 
+                                            
+                                            const   imageContainer = document.getElementById('images')    
+                                                    imageContainer.innerHTML = ''
+                
+                                                    urls.map(url => {
+                            
+                                            const   imageElement        = document.createElement('img')
+                                                    imageElement.src    = url
+                                                    imageElement.alt    = "Random Image"
+                                                    
+                                                    imageContainer.appendChild(imageElement)
+                                                
+                                                    }
+                                                    )
+                           
+                                            })
+
+        }
+
+        /* async function fetchImages() {
             const response = await fetch('http://localhost:3000/'); // Fetch from server
             const imageUrls = await response.json(); // Parse as JSON
 
@@ -25,7 +53,7 @@
                                         imageContainer.appendChild(imageElement)
                     
                             });
-                            } 
+                            }  */
 
         fetchImages();
    
