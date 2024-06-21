@@ -15,9 +15,7 @@ app.get('/', (req,res) => {
     getRandomPic(10).then((imageUrls) => {
 
                         const imageHtml = imageUrls.map((v) => `${v} alt="Image description">`);
-                        res.render("index", { imageHtml });
-    
-    })
+                        res.render("index", { imageHtml });})
     
 })
    
